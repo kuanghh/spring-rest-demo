@@ -22,4 +22,10 @@ public class UserServiceImpl implements UserService {
 
         return userList;
     }
+
+    @Override
+    public int saveUser(User user) {
+        System.out.println("save user :" + user.toString());
+        return 1;
+    }
 }
