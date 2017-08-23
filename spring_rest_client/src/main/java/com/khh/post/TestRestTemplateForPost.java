@@ -2,10 +2,7 @@ package com.khh.post;
 
 import com.khh.entity.User;
 import org.junit.Test;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,6 +22,7 @@ public class TestRestTemplateForPost {
     /****************************POST方法************************************/
     /**
      * 通过restTemplate.getForObject方法，访问资源
+     * 这个是一个方便的方法，详细请看方法4 testPOST4
      * @throws Exception
      */
     @Test
@@ -33,6 +31,7 @@ public class TestRestTemplateForPost {
         String url = "http://localhost:8080/spring_rest_server/demo5/postUser.action";
 
         User user = new User(88,"用户88",new Date());
+        //不加下面一行代码的话，会报415 Unsupported Media Type
         restTemplate.setMessageConverters(Arrays.asList(new MappingJackson2HttpMessageConverter()));
         ResponseEntity<User> responseEntity = restTemplate.postForEntity(url, user, User.class);
         System.out.println(responseEntity.getBody().toString());
@@ -72,5 +71,26 @@ public class TestRestTemplateForPost {
         System.out.println(responseEntity.getBody().toString());
     }
 
+
+    /**
+     * 通过restTemplate.getForObject方法，访问资源
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testPOST4() throws Exception{
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8080/spring_rest_server/demo5/postUser.action";
+
+        User user = new User(88,"用户88",new Date());
+        //设置请求头为application/json
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        //把请求体和请求头放进HttpEntity对象中
+        HttpEntity<User> userHttpEntity = new HttpEntity<>(user,httpHeaders);
+
+        ResponseEntity<User> responseEntity = restTemplate.postForEntity(url, userHttpEntity, User.class);
+        System.out.println(responseEntity.getBody().toString());
+    }
     /****************************POST方法************************************/
 }
