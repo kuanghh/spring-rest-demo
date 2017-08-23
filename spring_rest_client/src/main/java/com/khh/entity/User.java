@@ -8,24 +8,24 @@ import java.util.Date;
  */
 public class User implements Serializable {
 
-    private int id;
+    private Integer id;
     private String name;
     private Date birthday;
 
     public User() {
     }
 
-    public User(int id, String name, Date birthday) {
+    public User(Integer id, String name, Date birthday) {
         this.id = id;
         this.name = name;
         this.birthday = birthday;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -19,7 +19,6 @@
 
         var data = {"birthday":"1503459069546","id":"10","name":"user10"}; //<---这个是json对象
         var jsondata = JSON.stringify(data);// <----这个是json对象的字符串
-        //400报错
         $.ajax({
             type: "PUT",
             url: "/spring_rest_server/demo5/putUser2.action",

@@ -12,4 +12,6 @@ public interface UserService {
     List<User> findAllUser();
 
     int saveUser(User user);
+
+    int deleteById(Integer id);
 }

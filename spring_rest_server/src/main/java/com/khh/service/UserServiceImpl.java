@@ -28,4 +28,10 @@ public class UserServiceImpl implements UserService {
         System.out.println("save user :" + user.toString());
         return 1;
     }
+
+    @Override
+    public int deleteById(Integer id) {
+        System.out.println("delete from tb_user where id = " + id);
+        return 1;
+    }
 }

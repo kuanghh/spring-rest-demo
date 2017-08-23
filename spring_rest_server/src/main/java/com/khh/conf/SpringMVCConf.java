@@ -30,6 +30,7 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 public class SpringMVCConf extends  WebMvcConfigurerAdapter{
 
 
+
     /************************************************************************************************/
         /*
             spring 提供了两种方法将资源的java表述形式转换为发送给客户端的表述形式
