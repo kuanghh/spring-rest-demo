@@ -1,23 +1,14 @@
 package com.khh.conf;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 
 /**
@@ -26,7 +17,6 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.khh.*.controller")
 public class SpringMVCConf extends  WebMvcConfigurerAdapter{
 
 
@@ -56,26 +46,26 @@ public class SpringMVCConf extends  WebMvcConfigurerAdapter{
      *
      * @return
      */
-    @Bean
-    public HttpMessageConverter httpMessageConverter(){
-        return new MappingJackson2HttpMessageConverter();
-//        return new MappingJackson2XmlHttpMessageConverter();
-    }
-
-    /**这个很重要**/
-    @Bean
-    public RequestMappingHandlerAdapter requestMappingHandlerAdapter(HttpMessageConverter httpMessageConverter){
-        RequestMappingHandlerAdapter adapter = new RequestMappingHandlerAdapter();
-        adapter.getMessageConverters().add(httpMessageConverter);//把消息转换器注入
-        return adapter;
-    }
-
-    /**这个很重要**/
-    @Bean
-    public RequestMappingHandlerMapping requestMappingHandlerMapping(){
-        RequestMappingHandlerMapping mapping = new RequestMappingHandlerMapping();
-        return mapping;
-    }
+//    @Bean
+//    public HttpMessageConverter httpMessageConverter(){
+//        return new MappingJackson2HttpMessageConverter();
+////        return new MappingJackson2XmlHttpMessageConverter();
+//    }
+//
+//    /**这个很重要**/
+//    @Bean
+//    public RequestMappingHandlerAdapter requestMappingHandlerAdapter(HttpMessageConverter httpMessageConverter){
+//        RequestMappingHandlerAdapter adapter = new RequestMappingHandlerAdapter();
+//        adapter.getMessageConverters().add(httpMessageConverter);//把消息转换器注入
+//        return adapter;
+//    }
+//
+//    /**这个很重要**/
+//    @Bean
+//    public RequestMappingHandlerMapping requestMappingHandlerMapping(){
+//        RequestMappingHandlerMapping mapping = new RequestMappingHandlerMapping();
+//        return mapping;
+//    }
     /************************************************************************************************/
 
 
