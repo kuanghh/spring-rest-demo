@@ -23,7 +23,7 @@ public class Demo5Controller {
     @Autowired
     private UserService userService;
 
-
+    /*******************************************PUT*******************************************************/
     @RequestMapping(value = "/putUser/{user}",method = RequestMethod.PUT)
     public ResponseEntity<User> putUser(@PathVariable("user") String userJson) throws Exception{
         System.out.println(userJson);
@@ -48,8 +48,9 @@ public class Demo5Controller {
         ResponseEntity<User> entity = new ResponseEntity<>(user, HttpStatus.CREATED);
         return entity;
     }
+    /*******************************************PUT*******************************************************/
 
-
+    /*******************************************Delete*******************************************************/
     @RequestMapping(value = "/deleteUser/{id}",method = RequestMethod.DELETE)
     public ResponseEntity deleteUser(@PathVariable("id") Integer id) throws Exception{
 
@@ -57,6 +58,8 @@ public class Demo5Controller {
         ResponseEntity entity = new ResponseEntity(id,HttpStatus.OK);
         return entity;
     }
+    /*******************************************Delete*******************************************************/
+
 
     /**************************************POST***************************************************/
     /**
@@ -97,5 +100,22 @@ public class Demo5Controller {
         ResponseEntity<User> entity = new ResponseEntity<>(user, HttpStatus.CREATED);
         return entity;
     }
-    /*****************************************************************************************/
+    /****************************************POST*********************************************************/
+
+
+    /****************************************Exchange*********************************************************/
+
+    /**
+     *  restTemplate.exchange()方法可以在发送请求的时候，设置请求头信息
+     *
+     *  注意一下：如果method = RequestMethod.GET，也就是提交的方法要GET的话，那么在客户端提交的请求，body里面放致任何东西都不对，
+     *              因为GET请求的参数在URL的后面...形如http://../../*.action?id=1
+     */
+    @RequestMapping(value = "/exchange",method = RequestMethod.POST,consumes = {"application/json"})
+    public ResponseEntity<User> exchange(@RequestBody  User user) throws Exception{
+        userService.saveUser(user);
+        ResponseEntity<User> entity = new ResponseEntity<>(user, HttpStatus.CREATED);
+        return entity;
+    }
+    /****************************************Exchange*********************************************************/
 }
