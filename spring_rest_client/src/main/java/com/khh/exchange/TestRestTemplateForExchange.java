@@ -26,7 +26,7 @@ public class TestRestTemplateForExchange {
      *
      * 注意一下：如果method = RequestMethod.GET，也就是提交的方法要GET的话，那么在客户端提交的请求，body里面放致任何东西都不对，
      *              会报400状态码，提示你Required request body is missing，
-     *              因为GET请求的参数在URL的后面...形如http://../../*.action?id=1
+     *              因为GET请求的参数在URL的后面...形如http://../../*.action?id=1，导致@RequestBody不能解析请求体中的内容，因为请求体中没有内容
      *
      * @throws Exception
      */
